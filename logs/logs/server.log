@@ -1,0 +1,132 @@
+2022-02-19 10:57:03,706 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 10:57:18,033 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 10:57:18,037 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 59059)  
+2022-02-19 10:57:18,040 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 59060)  
+2022-02-19 10:57:18,040 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645261038.0377731, 'user': {'account_name': 'test2'}} client=<socket.socket fd=472, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59059)>  
+2022-02-19 10:57:18,041 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 10:57:18,533 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 59058)  
+2022-02-19 10:57:18,534 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645261038.040766, 'user': {'account_name': 'test3'}} client=<socket.socket fd=436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59060)>  
+2022-02-19 10:57:18,535 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 10:57:19,339 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645261038.5339282, 'user': {'account_name': 'test1'}} client=<socket.socket fd=396, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59058)>  
+2022-02-19 10:57:19,340 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 10:57:36,954 server.py  INFO       server               Получено сообщение {'action': 'message', 'from': 'test2', 'to': 'test1', 'time': 1645261056.1877828, 'mess_text': 'hello'} client=<socket.socket fd=472, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59059)>  
+2022-02-19 10:57:36,955 server.py  INFO       server               Получено сообщение в clients_message_handling, проверка успешна  
+2022-02-19 10:57:36,956 server.py  INFO       server               Пользователю test1 отправлено сообщение от test2  
+2022-02-19 10:57:57,773 server.py  INFO       server               Получено сообщение {'action': 'message', 'from': 'test1', 'to': 'test2', 'time': 1645261077.4961092, 'mess_text': 'how are you'} client=<socket.socket fd=396, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59058)>  
+2022-02-19 10:57:57,774 server.py  INFO       server               Получено сообщение в clients_message_handling, проверка успешна  
+2022-02-19 10:57:57,777 server.py  INFO       server               Пользователю test2 отправлено сообщение от test1  
+2022-02-19 10:58:07,384 server.py  INFO       server               Получено сообщение {'action': 'exit', 'time': 1645261086.7032433, 'account_name': 'test2'} client=<socket.socket fd=472, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59059)>  
+2022-02-19 10:58:11,387 server.py  INFO       server               Получено сообщение {'action': 'exit', 'time': 1645261090.855647, 'account_name': 'test1'} client=<socket.socket fd=396, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 59058)>  
+2022-02-19 10:58:15,389 server.py  INFO       server               Клиент ('127.0.0.1', 59060) отключился от сервера.  
+2022-02-19 11:15:06,544 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:15:39,641 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:21:07,751 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:43:32,437 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:43:55,773 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:44:34,404 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:45:19,551 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:45:19,554 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53302)  
+2022-02-19 11:45:19,557 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53303)  
+2022-02-19 11:45:19,558 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645263919.5544991, 'user': {'account_name': 'test3'}} client=<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53302)>  
+2022-02-19 11:45:19,558 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:45:19,559 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53304)  
+2022-02-19 11:45:19,560 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645263919.5574892, 'user': {'account_name': 'test1'}} client=<socket.socket fd=456, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53303)>  
+2022-02-19 11:45:19,560 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:45:20,360 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645263919.5594847, 'user': {'account_name': 'test2'}} client=<socket.socket fd=380, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53304)>  
+2022-02-19 11:45:20,360 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:45:42,178 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:45:42,184 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53306)  
+2022-02-19 11:45:42,191 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53307)  
+2022-02-19 11:45:42,191 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645263942.184182, 'user': {'account_name': 'test1'}} client=<socket.socket fd=296, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53306)>  
+2022-02-19 11:45:42,192 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:45:42,192 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53308)  
+2022-02-19 11:45:42,192 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645263942.1911635, 'user': {'account_name': 'test3'}} client=<socket.socket fd=288, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53307)>  
+2022-02-19 11:45:42,192 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:45:42,992 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645263942.192161, 'user': {'account_name': 'test2'}} client=<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53308)>  
+2022-02-19 11:45:42,993 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:47:07,374 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:47:07,375 descriptors.py DEBUG      descriptors          value  
+2022-02-19 11:47:07,384 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53318)  
+2022-02-19 11:47:07,388 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53319)  
+2022-02-19 11:47:07,389 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264027.3846724, 'user': {'account_name': 'test1'}} client=<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53318)>  
+2022-02-19 11:47:07,389 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:47:07,393 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53320)  
+2022-02-19 11:47:07,394 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264027.3886619, 'user': {'account_name': 'test2'}} client=<socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53319)>  
+2022-02-19 11:47:07,394 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:47:08,195 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264027.3936484, 'user': {'account_name': 'test3'}} client=<socket.socket fd=468, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53320)>  
+2022-02-19 11:47:08,195 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:47:58,601 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:47:58,602 descriptors.py DEBUG      descriptors            
+2022-02-19 11:47:58,606 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53325)  
+2022-02-19 11:47:58,616 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53326)  
+2022-02-19 11:47:58,616 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264078.6060262, 'user': {'account_name': 'test1'}} client=<socket.socket fd=380, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53325)>  
+2022-02-19 11:47:58,616 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:47:58,617 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53327)  
+2022-02-19 11:47:58,618 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264078.616997, 'user': {'account_name': 'test3'}} client=<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53326)>  
+2022-02-19 11:47:58,618 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:47:58,618 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264078.616997, 'user': {'account_name': 'test2'}} client=<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53327)>  
+2022-02-19 11:47:58,621 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:50:35,789 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:50:35,790 descriptors.py DEBUG      descriptors            
+2022-02-19 11:50:35,790 server.py  DEBUG      server               listen_port = 7777  
+2022-02-19 11:50:35,793 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53341)  
+2022-02-19 11:50:35,799 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53342)  
+2022-02-19 11:50:35,800 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264235.7935505, 'user': {'account_name': 'test1'}} client=<socket.socket fd=288, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53341)>  
+2022-02-19 11:50:35,800 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:50:35,801 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53343)  
+2022-02-19 11:50:35,801 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264235.7995346, 'user': {'account_name': 'test3'}} client=<socket.socket fd=352, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53342)>  
+2022-02-19 11:50:35,801 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:50:36,603 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264235.8005319, 'user': {'account_name': 'test2'}} client=<socket.socket fd=420, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53343)>  
+2022-02-19 11:50:36,603 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:51:14,542 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:51:14,542 descriptors.py DEBUG      descriptors            
+2022-02-19 11:51:14,542 server.py  DEBUG      server               listen_address =   
+2022-02-19 11:51:14,549 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53351)  
+2022-02-19 11:51:14,559 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53352)  
+2022-02-19 11:51:14,559 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264274.54906, 'user': {'account_name': 'test2'}} client=<socket.socket fd=408, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53351)>  
+2022-02-19 11:51:14,559 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:51:15,043 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53350)  
+2022-02-19 11:51:15,044 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264274.5590339, 'user': {'account_name': 'test3'}} client=<socket.socket fd=388, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53352)>  
+2022-02-19 11:51:15,044 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:51:15,848 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264275.0432403, 'user': {'account_name': 'test1'}} client=<socket.socket fd=156, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53350)>  
+2022-02-19 11:51:15,849 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:54:24,577 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:54:24,577 descriptors.py DEBUG      descriptors          192.168.56.1  
+2022-02-19 11:54:24,578 server.py  DEBUG      server               listen_address = 192.168.56.1  
+2022-02-19 11:55:36,138 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:55:36,139 descriptors.py DEBUG      descriptors            
+2022-02-19 11:56:10,550 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:56:10,551 descriptors.py DEBUG      descriptors            
+2022-02-19 11:57:11,946 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:57:11,947 descriptors.py DEBUG      descriptors            
+2022-02-19 11:57:11,947 server.py  DEBUG      server               listen_address =   
+2022-02-19 11:57:11,961 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53386)  
+2022-02-19 11:57:11,964 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53387)  
+2022-02-19 11:57:11,965 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264631.9612148, 'user': {'account_name': 'test2'}} client=<socket.socket fd=296, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53386)>  
+2022-02-19 11:57:11,965 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:57:11,971 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53388)  
+2022-02-19 11:57:11,971 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264631.9642057, 'user': {'account_name': 'test3'}} client=<socket.socket fd=364, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53387)>  
+2022-02-19 11:57:11,972 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:57:12,772 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264631.9711862, 'user': {'account_name': 'test1'}} client=<socket.socket fd=292, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53388)>  
+2022-02-19 11:57:12,772 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 11:58:42,995 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 11:58:42,997 descriptors.py DEBUG      descriptors          192.168.56.1  
+2022-02-19 11:58:42,997 server.py  DEBUG      server               listen_address = 192.168.56.1  
+2022-02-19 12:00:32,401 server.py  DEBUG      server               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-19 12:00:32,402 descriptors.py DEBUG      descriptors            
+2022-02-19 12:00:32,402 server.py  DEBUG      server               listen_address =   
+2022-02-19 12:00:32,413 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53192)  
+2022-02-19 12:00:32,414 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53193)  
+2022-02-19 12:00:32,414 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264832.4137065, 'user': {'account_name': 'test1'}} client=<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53192)>  
+2022-02-19 12:00:32,415 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 12:00:32,418 server.py  INFO       server               Соединение установлено c ('127.0.0.1', 53194)  
+2022-02-19 12:00:32,418 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264832.4147043, 'user': {'account_name': 'test3'}} client=<socket.socket fd=328, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53193)>  
+2022-02-19 12:00:32,418 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 12:00:33,218 server.py  INFO       server               Получено сообщение {'action': 'presence', 'time': 1645264832.4186935, 'user': {'account_name': 'test2'}} client=<socket.socket fd=480, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53194)>  
+2022-02-19 12:00:33,219 server.py  INFO       server               Проверка сообщения в clients_message_handling успешна, ответ: 200  
+2022-02-19 12:00:46,829 server.py  INFO       server               Получено сообщение {'action': 'message', 'from': 'test2', 'to': 'test1', 'time': 1645264846.700505, 'mess_text': 'hi'} client=<socket.socket fd=480, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53194)>  
+2022-02-19 12:00:46,830 server.py  INFO       server               Получено сообщение в clients_message_handling, проверка успешна  
+2022-02-19 12:00:46,831 server.py  INFO       server               Пользователю test1 отправлено сообщение от test2  
+2022-02-19 12:01:01,242 server.py  INFO       server               Получено сообщение {'action': 'message', 'from': 'test1', 'to': 'test2', 'time': 1645264861.047724, 'mess_text': 'hello'} client=<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53192)>  
+2022-02-19 12:01:01,242 server.py  INFO       server               Получено сообщение в clients_message_handling, проверка успешна  
+2022-02-19 12:01:01,244 server.py  INFO       server               Пользователю test2 отправлено сообщение от test1  
