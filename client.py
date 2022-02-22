@@ -174,6 +174,7 @@ def main():
     try:
         client_socket = socket(AF_INET, SOCK_STREAM)
         client_socket.connect((server_address, server_port))
+        # client_socket.connect(('192.168.56.1', 8880))
         # presence
         send_message(client_socket, make_presence(client_name))
         answer = get_answer_presence(get_message(client_socket))
