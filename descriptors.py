@@ -1,3 +1,4 @@
+import ipaddress
 import logging
 LOG = logging.getLogger('server')
 
@@ -17,8 +18,10 @@ class Host:
     def __set__(self, instance, value):
         LOG.debug(f'{value}')
         if value:
-            if int(value.split('.')[3]) > 254:
-                LOG.critical('Не верный адрес')
+            try:
+                ip = ipaddress.ip_address(value)
+            except ValueError as err:
+                LOG.critical(f'Не корректный ip: {err}')
                 exit(1)
         instance.__dict__[self.name] = value
 
