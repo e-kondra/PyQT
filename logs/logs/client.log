@@ -1822,3 +1822,34 @@ i am fine
 2022-02-27 22:01:28,705 client.py  INFO       client               Запущен клиент со следующими параметрами: адрес 127.0.0.1, порт 7777, имя пользователя Kat  
 2022-02-27 22:01:42,425 client.py  DEBUG      client               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
 2022-02-27 22:01:45,341 client.py  INFO       client               Запущен клиент со следующими параметрами: адрес 127.0.0.1, порт 7777, имя пользователя Kat  
+2022-02-27 22:31:55,680 client.py  DEBUG      client               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:31:59,066 client.py  INFO       client               Запущен клиент со следующими параметрами: адрес 127.0.0.1, порт 7777, имя пользователя Testov  
+2022-02-27 22:31:59,067 client.py  DEBUG      client               Была вызвана функция make_presence c параметрами ('Testov',), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:31:59,888 client.py  DEBUG      client               Была вызвана функция get_answer_presence c параметрами ({'response': 200},), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:31:59,888 client.py  INFO       client               Установлено соединение с сервером. Ответ сервера: 200 : OK  
+2022-02-27 22:31:59,917 client.py  DEBUG      client               Запрос списка известных пользователей Testov  
+2022-02-27 22:32:00,691 client.py  DEBUG      client               Была вызвана функция user_list_request c параметрами (<socket.socket fd=636, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 61046), raddr=('192.168.56.1', 8880)>, 'Testov'), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции database_load  
+2022-02-27 22:32:00,714 client.py  DEBUG      client               Запрос контакт листа для пользователся Testov  
+2022-02-27 22:32:00,714 client.py  DEBUG      client               Сформирован запрос {'action': 'get_contacts', 'time': 1645993920.714883, 'user': 'Testov'}  
+2022-02-27 22:32:01,503 client.py  DEBUG      client               Получен ответ {'response': 202, 'data_list': []}  
+2022-02-27 22:32:01,504 client.py  DEBUG      client               Была вызвана функция contacts_list_request c параметрами (<socket.socket fd=636, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 61046), raddr=('192.168.56.1', 8880)>, 'Testov'), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции database_load  
+2022-02-27 22:32:01,504 client.py  DEBUG      client               Была вызвана функция database_load c параметрами (<socket.socket fd=636, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 61046), raddr=('192.168.56.1', 8880)>, <client_database.ClientDatabase object at 0x0000027D36EF3D30>, 'Testov'), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:32:01,505 client.py  DEBUG      client               Запущены процессы  
+2022-02-27 22:33:44,608 client.py  DEBUG      client               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:38:12,793 client.py  DEBUG      client               Была вызвана функция arg_parser c параметрами (), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:38:17,254 client.py  INFO       client               Запущен клиент со следующими параметрами: адрес 127.0.0.1, порт 7777, имя пользователя Testov  
+2022-02-27 22:38:17,256 client.py  DEBUG      client               Была вызвана функция make_presence c параметрами ('Testov',), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:38:18,081 client.py  DEBUG      client               Была вызвана функция get_answer_presence c параметрами ({'response': 200},), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:38:18,082 client.py  INFO       client               Установлено соединение с сервером. Ответ сервера: 200 : OK  
+2022-02-27 22:38:18,113 client.py  DEBUG      client               Запрос списка известных пользователей Testov  
+2022-02-27 22:38:18,884 client.py  DEBUG      client               Была вызвана функция user_list_request c параметрами (<socket.socket fd=616, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 61143), raddr=('192.168.56.1', 8880)>, 'Testov'), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции database_load  
+2022-02-27 22:38:18,923 client.py  DEBUG      client               Запрос контакт листа для пользователся Testov  
+2022-02-27 22:38:18,923 client.py  DEBUG      client               Сформирован запрос {'action': 'get_contacts', 'time': 1645994298.9233062, 'user': 'Testov'}  
+2022-02-27 22:38:19,697 client.py  DEBUG      client               Получен ответ {'response': 202, 'data_list': []}  
+2022-02-27 22:38:19,697 client.py  DEBUG      client               Была вызвана функция contacts_list_request c параметрами (<socket.socket fd=616, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 61143), raddr=('192.168.56.1', 8880)>, 'Testov'), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции database_load  
+2022-02-27 22:38:19,698 client.py  DEBUG      client               Была вызвана функция database_load c параметрами (<socket.socket fd=616, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 61143), raddr=('192.168.56.1', 8880)>, <client_database.ClientDatabase object at 0x0000022EB3903D30>, 'Testov'), {}.Вызов из модуля __main__.Вызов из функции main().Вызов из функции main  
+2022-02-27 22:38:19,698 client.py  DEBUG      client               Запущены процессы  
+2022-02-27 22:38:33,383 client.py  DEBUG      client               Сформирован словарь сообщения: {'action': 'message', 'from': 'Testov', 'to': 'Kat', 'time': 1645994313.3838143, 'mess_text': 'hello, Kat'}  
+2022-02-27 22:38:33,706 client.py  INFO       client               Отправлено сообщение для пользователя Kat  
+2022-02-27 22:38:51,239 client.py  DEBUG      client               Сформирован словарь сообщения: {'action': 'message', 'from': 'Testov', 'to': 'Kat', 'time': 1645994331.2394009, 'mess_text': 'How are you?'}  
+2022-02-27 22:38:51,718 client.py  INFO       client               Отправлено сообщение для пользователя Kat  

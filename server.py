@@ -11,7 +11,7 @@ from select import select
 import argparse
 
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, PRESENCE, TIME, USER, ERROR, DEFAULT_PORT, \
     MESSAGE_TEXT, MESSAGE, SENDER, DESTINATION, EXIT, RESPONSE_202, LIST_INFO, GET_CONTACTS, RESPONSE_200, \
@@ -24,7 +24,7 @@ from metaclasses import ServerVerifier
 from server_database import ServerStorage
 from tabulate import tabulate
 
-from servergui import Ui_MainWindow, gui_create_model, HistoryWindow, gui_hist_model
+from servergui import Ui_MainWindow, gui_create_model, HistoryWindow, gui_hist_model, ConfigWindow
 
 LOG = logging.getLogger('server')
 
@@ -244,18 +244,49 @@ def main():
 
     # Функция создающяя окно с историей клиентов
     def show_history():
-        print('show_history')
         global stat_window
         stat_window = HistoryWindow()
-        print('show_history2')
         try:
             stat_window.history_table.setModel(gui_hist_model(database))
         except Exception as err:
             print(err)
-        print('show_history3')
         stat_window.history_table.resizeColumnsToContents()
         stat_window.history_table.resizeRowsToContents()
 
+    def server_config():
+        global config_window
+        # Создаём окно и заносим в него текущие параметры
+        config_window = ConfigWindow()
+        config_window.db_path.insert(config['SETTINGS']['Database_path'])
+        config_window.db_file.insert(config['SETTINGS']['Database_file'])
+        config_window.port.insert(config['SETTINGS']['Default_port'])
+        config_window.ip.insert(config['SETTINGS']['Listen_Address'])
+        config_window.save_btn.clicked.connect(save_server_config)
+
+    # охранение настроек
+    def save_server_config():
+        global config_window
+        message = QMessageBox()
+        config['SETTINGS']['Database_path'] = config_window.db_path.text()
+        config['SETTINGS']['Database_file'] = config_window.db_file.text()
+        try:
+            port = int(config_window.port.text())
+        except ValueError:
+            message.warning(config_window, 'Ошибка', 'Порт должен быть числом')
+        else:
+            config['SETTINGS']['Listen_Address'] = config_window.ip.text()
+            if 1023 < port < 65536:
+                config['SETTINGS']['Default_port'] = str(port)
+                print(port)
+                with open('server.ini', 'w') as conf:
+                    config.write(conf)
+                    message.information(
+                        config_window, 'OK', 'Настройки успешно сохранены!')
+            else:
+                message.warning(
+                    config_window,
+                    'Ошибка',
+                    'Порт должен быть от 1024 до 65536')
 
     # Таймер, обновляющий список клиентов 1 раз в секунду
     timer = QTimer()
@@ -265,6 +296,7 @@ def main():
     # Связываем кнопки с процедурами
     WINDOW_OBJ.refresh_button.triggered.connect(list_update)
     WINDOW_OBJ.show_history_button.triggered.connect(show_history)
+    WINDOW_OBJ.config_btn.triggered.connect(server_config)
 
     APP.exec_()
 
