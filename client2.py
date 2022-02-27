@@ -225,8 +225,6 @@ def add_contact(sock, username, contact):
     }
     send_message(sock, req)
     ans = get_message(sock)
-
-    print(ans)
     if RESPONSE in ans and ans[RESPONSE] == 200:
         pass
     else:
