@@ -45,7 +45,6 @@ def arg_parser(default_port, default_address):
 
 class Server(threading.Thread, metaclass=ServerVerifier):
     listen_port = Port()
-    listen_address = Host()
 
     def __init__(self, listen_address, listen_port, database):
         self.listen_address = listen_address
@@ -65,7 +64,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
         # create servers socket
         server_socket = socket(AF_INET, SOCK_STREAM)
         server_socket.bind((self.listen_address, self.listen_port))
-        server_socket.settimeout(0.8)
+        server_socket.settimeout(0.5)
 
         self.server_socket = server_socket
 

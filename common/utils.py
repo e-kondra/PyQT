@@ -11,22 +11,20 @@ def get_message(client):
     client.py 192.168.1.33 8888
     '''
     encoded_response = client.recv(MAX_PACKAGE_LENGTH)
-    if isinstance(encoded_response, bytes):
-        json_response = encoded_response.decode(ENCODING)
-        response = json.loads(json_response)
-        if isinstance(response, dict):
-            return response
-        else:
-            raise IncorrectDataRecivedError
+    # if isinstance(encoded_response, bytes):
+    json_response = encoded_response.decode(ENCODING)
+    response = json.loads(json_response)
+
+    if isinstance(response, dict):
+        print(response)
+        return response
     else:
-        raise IncorrectDataRecivedError
+        raise TypeError
 
 def send_message(sock, msg):
     '''
     from str to bytes and sending message in byte-format
     '''
-    if not isinstance(msg, dict):
-        raise NonDictInputError
     js_message = json.dumps(msg)
     encoded_message = js_message.encode(ENCODING)
     sock.send(encoded_message)
