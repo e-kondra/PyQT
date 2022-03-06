@@ -47,7 +47,7 @@ class ClientTransport(threading.Thread, QObject):
     def connection_init(self, port, ip_address):
 
         self.transport = socket(AF_INET, SOCK_STREAM)
-        self.transport.settimeout(1)
+        self.transport.settimeout(5)
 
         # Соединяемся, 5 попыток соединения, флаг успеха ставим в True если удалось
         connected= False
@@ -72,10 +72,19 @@ class ClientTransport(threading.Thread, QObject):
         # Посылаем серверу приветственное сообщение и получаем ответ что всё нормально или ловим исключение
         try:
             with socket_lock:
-                send_message(self.transport, self.make_presence())
-                self.get_server_answer(get_message(self.transport))
+                try:
+                    send_message(self.transport, self.make_presence())
+                    LOG.debug('send_message')
+                except Exception as err:
+                    LOG.warning(f'send_message error : {err}')
+                try:
+                    self.get_server_answer(get_message(self.transport))
+                    LOG.debug('get_server_answer')
+                except Exception as err:
+                    LOG.warning(f'get_server_answer error : {err}')
+
         except (OSError, json.JSONDecodeError):
-            LOG.critical('Потеряно соединение с сервером')
+            LOG.critical('Потеряно соединение с сервером!!!')
             raise ServerError('Потеряно соединение с сервером')
 
         LOG.info('Соединение с сервером установлено')
@@ -92,8 +101,9 @@ class ClientTransport(threading.Thread, QObject):
         return request
 
     def get_server_answer(self, msg):
-        LOG.debug(f'Разбор сообщения от сервера{msg}')
         '''get answer from server'''
+        LOG.debug(f'Разбор сообщения от сервера{msg}')
+
         print(msg)
         print(f'msg[RESPONSE] = {msg[RESPONSE]}')
         if RESPONSE in msg:
@@ -107,7 +117,7 @@ class ClientTransport(threading.Thread, QObject):
         elif ACTION in msg and msg[ACTION] == MESSAGE and SENDER in msg and DESTINATION in msg \
                             and MESSAGE_TEXT in msg and msg[DESTINATION] == self.username:
             print(f'\nПолучено сообщение от пользователя {msg[SENDER]}: \n{msg[MESSAGE_TEXT]}')
-            LOG(f'\nПолучено сообщение от пользователя {msg[SENDER]}: \n{msg[MESSAGE_TEXT]}')
+            LOG.de(f'\nПолучено сообщение от пользователя {msg[SENDER]}: \n{msg[MESSAGE_TEXT]}')
             self.database.save_message(msg[SENDER], 'in', msg[MESSAGE_TEXT])
             self.new_message.emit(msg[SENDER]) # свой сигнал!
 

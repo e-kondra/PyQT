@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5 import QtCore, QtWidgets, Qt
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtGui import QColor, QStandardItem, QStandardItemModel, QBrush
 from PyQt5.QtWidgets import QMainWindow, QApplication, qApp, QMessageBox
