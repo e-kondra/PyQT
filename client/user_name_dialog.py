@@ -4,11 +4,10 @@ from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, qApp
 class UserNameDialog(QDialog):
     def __init__(self):
         super().__init__()
+        self.ok_pressed = False
 
         self.setWindowTitle('Введите имя пользователя')
         self.setFixedSize(200, 100)
-
-        self.ok_pressed = False
 
         self.label = QLabel('Введите имя пользователя')
         self.label.move(10,10)

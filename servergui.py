@@ -40,16 +40,16 @@ def  gui_create_model(database):
     list_ = QStandardItemModel()
     list_.setHorizontalHeaderLabels(['Clients name', 'last login', 'IP address', 'Port', ])
     for row in active_users:
-        user, time, ipaddress, port = row
+        user, ipaddress, port, time = row
         user = QStandardItem(user)  # создаем элемент
         user.setEditable(False)  # редактирование
-        time = QStandardItem(str(time.replace(microsecond=0)))
-        time.setEditable(False)
         ipaddress = QStandardItem(str(ipaddress))
         ipaddress.setEditable(False)
         port = QStandardItem(str(port))
         port.setEditable(False)
-        list_.appendRow([user, time, ipaddress, port])  # добавляем строку
+        time = QStandardItem(str(time.replace(microsecond=0)))
+        time.setEditable(False)
+        list_.appendRow([user,ipaddress, port, time])  # добавляем строку
     return list_
 
 
@@ -57,7 +57,7 @@ class Ui_MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi()
-        
+
     def setupUi(self):
         # Настройки геометрии основного окна
         # размер окна фиксирован.
@@ -78,7 +78,6 @@ class Ui_MainWindow(QMainWindow):
         exitAction.triggered.connect(qApp.quit)
 
         # Статусбар
-        # dock widget
         self.statusBar()
 
         # Тулбар
@@ -127,8 +126,6 @@ class HistoryWindow(QDialog):
         self.history_table = QTableView(self)
         self.history_table.move(10, 35)
         self.history_table.setFixedSize(580, 380)
-
-
 
         self.show()
 
@@ -226,3 +223,4 @@ if __name__ == '__main__':
     WINDOW_OBJ.active_clients_table.setModel(test_list)
     WINDOW_OBJ.active_clients_table.resizeColumnsToContents()
     APP.exec_()
+

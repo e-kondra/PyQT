@@ -7,10 +7,10 @@ from logs.configs.client_log_config import LOG
 
 
 class AddContact(QDialog):
-    def __init__(self, socket, database):
+    def __init__(self, transport, database):
 
         super().__init__()
-        self.socket = socket
+        self.transport = transport
         self.database = database
 
         self.setFixedSize(300, 100)
@@ -38,6 +38,7 @@ class AddContact(QDialog):
         self.btn_cancl = QPushButton('Отменить', self)
         self.btn_cancl.setFixedSize(80, 30)
         self.btn_cancl.move(210, 60)
+        self.btn_cancl.clicked.connect(self.close)
 
         self.btn_refresh = QPushButton('Обновить список', self)
         self.btn_refresh.setFixedSize(110, 30)
@@ -50,12 +51,12 @@ class AddContact(QDialog):
         self.selector.clear()
         contacts = set(self.database.get_contacts())
         users = set(self.database.get_users())
-        users.remove(self.socket.username)
+        users.remove(self.transport.username)
         self.selector.addItems(users - contacts)
 
     def update_possible_contacts(self):
         try:
-            self.socket.user_list_request()
+            self.transport.user_list_request()
         except OSError:
             pass
         else:
