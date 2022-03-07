@@ -1,6 +1,5 @@
 import json
 
-from errors import IncorrectDataRecivedError, NonDictInputError
 from .variables import MAX_PACKAGE_LENGTH, ENCODING
 
 
@@ -19,6 +18,7 @@ def get_message(client):
         print(response)
         return response
     else:
+        print('TypeError')
         raise TypeError
 
 def send_message(sock, msg):

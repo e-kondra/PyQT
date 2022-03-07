@@ -1,6 +1,8 @@
 import json
 import threading
 import time
+import sys
+sys.path.append('../')
 from socket import socket, AF_INET, SOCK_STREAM
 
 from PyQt5.QtCore import QObject, pyqtSignal
@@ -8,7 +10,7 @@ from PyQt5.QtCore import QObject, pyqtSignal
 
 from common.utils import send_message, get_message
 from common.variables import *
-from errors import ServerError
+from common.errors import ServerError
 from logs.configs.client_log_config import LOG
 
 socket_lock = threading.Lock()
@@ -166,11 +168,14 @@ class ClientTransport(threading.Thread, QObject):
         }
         print(f'add_contact. req = {req}')
         with socket_lock:
-            print('with socket_lock')
+            if self.transport:
+                print('with socket_lock, self.transport')
             send_message(self.transport, req)
             print(f'send_message {req}')
             try:
-                self.get_server_answer(get_message(self.transport))
+                msg = get_message(self.transport)
+                print(msg)
+                self.get_server_answer(msg)
             except Exception as err:
                 print(err)
             print('get_server_answer')
@@ -202,7 +207,7 @@ class ClientTransport(threading.Thread, QObject):
             LOG.debug('Транспорт завершает работу.')
             time.sleep(0.5)
 
-    def send_message(self, to, msg):
+    def send_message_(self, to, msg):
         message = {
             ACTION: MESSAGE,
             SENDER: self.username,
@@ -235,5 +240,8 @@ class ClientTransport(threading.Thread, QObject):
                     self.connection_lost.emit()
                 else:
                     LOG.debug(f'Принято сообщение с сервера: {message}')
+                    self.get_server_answer(message)
                 finally:
                     self.transport.settimeout(5)
+
+

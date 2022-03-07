@@ -19,7 +19,7 @@ from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, PR
 from common.utils import get_message, send_message
 from descriptors import Port, Host
 from logs.configs import server_log_config
-from decors import log
+from common.decors import log
 from metaclasses import ServerVerifier
 from server_database import ServerStorage
 from tabulate import tabulate

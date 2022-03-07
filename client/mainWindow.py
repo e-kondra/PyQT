@@ -1,5 +1,5 @@
 import sys
-
+sys.path.append('../')
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtGui import QColor, QStandardItem, QStandardItemModel, QBrush
@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, qApp, QMessageBox
 
 from client.AddContactDialog import AddContact
 from client.delete_contact import RemoveContact
-from errors import ServerError
+from common.errors import ServerError
 from logs.configs.client_log_config import LOG
 
 
@@ -115,11 +115,11 @@ class Ui_ClientWindow(object):
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, database, socket):
+    def __init__(self, database, transport):
 
         super().__init__()
         self.database = database
-        self.socket = socket
+        self.transport = transport
 
         self.ui = Ui_ClientWindow()
         self.ui.setupUi(self)
@@ -175,7 +175,7 @@ class MainWindow(QMainWindow):
             print('not message_text')
             return
         try:
-            self.socket.send_message(self.current_chat, message_text)
+            self.transport.send_message_(self.current_chat, message_text)
         except ServerError as err:
             self.messages.critical(self, 'Ошибка', err.text)
         except OSError as err:
@@ -195,7 +195,7 @@ class MainWindow(QMainWindow):
 
     def window_add_contact(self):
         global selected_dialog
-        selected_dialog = AddContact(self.socket, self.database)
+        selected_dialog = AddContact(self.transport, self.database)
         selected_dialog.btn_ok.clicked.connect(lambda: self.add_contact_action(selected_dialog))
         selected_dialog.show()
 
@@ -214,7 +214,7 @@ class MainWindow(QMainWindow):
     def add_contact(self, contact):
         print('add_contact')
         try:
-            self.socket.add_contact(contact)
+            self.transport.add_contact(contact)
         except ServerError as err:
             self.messages.critical(self, 'Ошибка сервера', err.text)
         except OSError as err:
@@ -240,7 +240,7 @@ class MainWindow(QMainWindow):
     def del_contact(self, item):
         selected_contact = item.selector.currentText()
         try:
-            self.socket.remove_contact(selected_contact)
+            self.transport.remove_contact(selected_contact)
         except ServerError as err:
             self.messages.сritical(self, 'Ошибка сервера', err.text)
             # self.messages.warning(self, 'Ошибка сервера', err.text)

@@ -8,15 +8,15 @@ class UserNameDialog(QDialog):
         self.setWindowTitle('Введите имя пользователя')
         self.setFixedSize(200, 100)
 
+        self.ok_pressed = False
+
         self.label = QLabel('Введите имя пользователя')
         self.label.move(10,10)
         self.label.setFixedSize(180,10)
 
-        self.user_name = QLineEdit(self)
-        self.user_name.setFixedSize(160, 20)
-        self.user_name.move(10, 30)
-
-        self.ok_pressed = False
+        self.client_name = QLineEdit(self)
+        self.client_name.setFixedSize(160, 20)
+        self.client_name.move(10, 30)
 
         self.btn_ok = QPushButton('Ок', self)
         self.btn_ok.move(10, 60)
@@ -30,7 +30,7 @@ class UserNameDialog(QDialog):
 
 
     def ok_press(self):
-        if self.user_name.text():
+        if self.client_name.text():
             self.ok_pressed = True
             qApp.exit()
 

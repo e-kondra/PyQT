@@ -2,7 +2,7 @@ import argparse
 import sys
 import threading
 import time
-from socket import *
+
 import json
 import logging
 from threading import Thread
@@ -18,9 +18,8 @@ from client.database import ClientDatabase
 
 from common.variables import *
 from common.utils import send_message, get_message
-from errors import ReqFieldMissingError, ServerError, IncorrectDataRecivedError
-from decors import log
-from metaclasses import ClientVerifier
+from common.errors import ReqFieldMissingError, ServerError, IncorrectDataRecivedError
+from common.decors import log
 
 
 database_lock = threading.Lock()
@@ -68,7 +67,7 @@ def main():
         dialog = UserNameDialog()
         client_app.exec_()
         if dialog.ok_pressed:
-            client_name = dialog.user_name.text()
+            client_name = dialog.client_name.text()
             del dialog
         else:
             exit(0)
@@ -99,3 +98,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
