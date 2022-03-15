@@ -1,4 +1,6 @@
-
+'''
+Модуль, отвечающий за транспортную систему клиентского приложения
+'''
 import socket
 import time
 import logging
@@ -7,56 +9,60 @@ import threading
 import hashlib
 import hmac
 import binascii
-from PyQt5.QtCore import pyqtSignal, QObject
 
-from common.utils import *
-from common.variables import *
+import PyQt5.QtCore
+
+from common.utils import send_message, get_message
 from common.errors import ServerError
+from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, PUBLIC_KEY, \
+    RESPONSE, ERROR, DATA, RESPONSE_511, SENDER, MESSAGE, DESTINATION, \
+    MESSAGE_TEXT, GET_CONTACTS, LIST_INFO, USERS_REQUEST, PUBLIC_KEY_REQUEST, \
+    ADD_CONTACT, REMOVE_CONTACT, EXIT
 
-# Логер и объект блокировки для работы с сокетом.
 LOG = logging.getLogger('client')
 socket_lock = threading.Lock()
 
 
-class ClientTransport(threading.Thread, QObject):
+class ClientTransport(threading.Thread, PyQt5.QtCore.QObject):
     '''
     Класс реализующий транспортную подсистему клиентского
     модуля. Отвечает за взаимодействие с сервером.
     '''
     # Сигналы новое сообщение и потеря соединения
-    new_message = pyqtSignal(dict)
-    message_205 = pyqtSignal()
-    connection_lost = pyqtSignal()
+    new_message = PyQt5.QtCore.pyqtSignal(dict)
+    message_205 = PyQt5.QtCore.pyqtSignal()
+    connection_lost = PyQt5.QtCore.pyqtSignal()
 
-    def __init__(self, port, ip_address, database, username, passwd, keys):
+    def __init__(self, transport_dict):
         # Вызываем конструкторы предков
         threading.Thread.__init__(self)
-        QObject.__init__(self)
+        PyQt5.QtCore.QObject.__init__(self)
 
         # Класс База данных - работа с базой
-        self.database = database
+        self.database = transport_dict['database']
         # Имя пользователя
-        self.username = username
+        self.username = transport_dict['username']
         # Пароль
-        self.password = passwd
+        self.password = transport_dict['passwd']
         # Сокет для работы с сервером
         self.transport = None
         # Набор ключей для шифрования
-        self.keys = keys
+        self.keys = transport_dict['keys']
         # Устанавливаем соединение:
-        self.connection_init(port, ip_address)
+        self.connection_init(transport_dict['port'],
+                             transport_dict['ip_address'])
         # Обновляем таблицы известных пользователей и контактов
         try:
             self.user_list_update()
             self.contacts_list_update()
         except OSError as err:
             if err.errno:
-                LOG.critical(f'Потеряно соединение с сервером.')
+                LOG.critical('Потеряно соединение с сервером.')
                 raise ServerError('Потеряно соединение с сервером!')
             LOG.error(
                 'Timeout соединения при обновлении списков пользователей.')
         except json.JSONDecodeError:
-            LOG.critical(f'Потеряно соединение с сервером.')
+            LOG.critical('Потеряно соединение с сервером.')
             raise ServerError('Потеряно соединение с сервером!')
             # Флаг продолжения работы транспорта.
         self.running = True
@@ -154,14 +160,18 @@ class ClientTransport(threading.Thread, QObject):
                 self.message_205.emit()
             else:
                 LOG.error(
-                    f'Принят неизвестный код подтверждения {message[RESPONSE]}')
+                    f'Принят неизвестный код '
+                    f'подтверждения {message[RESPONSE]}')
 
         # Если это сообщение от пользователя добавляем в базу, даём сигнал о
         # новом сообщении
-        elif ACTION in message and message[ACTION] == MESSAGE and SENDER in message and DESTINATION in message \
-                and MESSAGE_TEXT in message and message[DESTINATION] == self.username:
+        elif ACTION in message and message[ACTION] == MESSAGE\
+                and SENDER in message and DESTINATION in message\
+                and MESSAGE_TEXT in message \
+                and message[DESTINATION] == self.username:
             LOG.debug(
-                f'Получено сообщение от пользователя {message[SENDER]}:{message[MESSAGE_TEXT]}')
+                f'Получено сообщение от пользователя'
+                f' {message[SENDER]}:{message[MESSAGE_TEXT]}')
             self.new_message.emit(message)
 
     def contacts_list_update(self):
@@ -289,12 +299,13 @@ class ClientTransport(threading.Thread, QObject):
                     message = get_message(self.transport)
                 except OSError as err:
                     if err.errno:
-                        LOG.critical(f'Потеряно соединение с сервером.')
+                        LOG.critical('Потеряно соединение с сервером.')
                         self.running = False
                         self.connection_lost.emit()
                 # Проблемы с соединением
-                except (ConnectionError, ConnectionAbortedError, ConnectionResetError, json.JSONDecodeError, TypeError):
-                    LOG.debug(f'Потеряно соединение с сервером.')
+                except(ConnectionError, ConnectionAbortedError,
+                       ConnectionResetError, json.JSONDecodeError, TypeError):
+                    LOG.debug('Потеряно соединение с сервером.')
                     self.running = False
                     self.connection_lost.emit()
                 finally:

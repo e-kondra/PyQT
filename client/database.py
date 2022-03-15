@@ -1,8 +1,9 @@
+import os
 import datetime
-from common.variables import *
+
 from sqlalchemy import create_engine, Table, Column, Integer, String, Text, MetaData, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
-import os
+
 
 
 
@@ -109,7 +110,7 @@ class ClientDatabase:
         self.session.query(self.Contacts).delete()
 
     def del_contact(self, contact):
-        '''Удаление контакта'''
+        '''Удаление контакта.'''
         self.session.query(self.Contacts).filter_by(name=contact).delete()
 
     def add_users(self, users_list):

@@ -1,3 +1,5 @@
+'''Основной модуль серверного приложения'''
+
 import threading
 import logging
 import select
@@ -46,7 +48,7 @@ class MessageProcessor(threading.Thread):
         self.running = True
 
         # Словарь содержащий сопоставленные имена и соответствующие им сокеты.
-        self.names = dict()
+        self.names = {}
 
         # Конструктор предка
         super().__init__()
@@ -106,7 +108,9 @@ class MessageProcessor(threading.Thread):
     def init_socket(self):
         '''Инициализация сокета.'''
         logger.info(
-            f'Запущен сервер, порт для подключений: {self.port} , адрес с которого принимаются подключения: {self.addr}. Если адрес не указан, принимаются соединения с любых адресов.')
+            f'Запущен сервер, порт для подключений: {self.port}'
+            f' , адрес с которого принимаются подключения: {self.addr}. '
+            f'Если адрес не указан, принимаются соединения с любых адресов.')
         # Готовим сокет
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.bind((self.addr, self.port))
@@ -125,29 +129,36 @@ class MessageProcessor(threading.Thread):
             try:
                 send_message(self.names[message[DESTINATION]], message)
                 logger.info(
-                    f'Отправлено сообщение пользователю {message[DESTINATION]} от пользователя {message[SENDER]}.')
+                    f'Отправлено сообщение пользователю {message[DESTINATION]}'
+                    f' от пользователя {message[SENDER]}.')
             except OSError:
                 self.remove_client(message[DESTINATION])
-        elif message[DESTINATION] in self.names and self.names[message[DESTINATION]] not in self.listen_sockets:
+        elif message[DESTINATION] in self.names \
+                and self.names[message[DESTINATION]] not in self.listen_sockets:
             logger.error(
-                f'Связь с клиентом {message[DESTINATION]} была потеряна. Соединение закрыто, доставка невозможна.')
+                f'Связь с клиентом {message[DESTINATION]} была потеряна.'
+                f' Соединение закрыто, доставка невозможна.')
             self.remove_client(self.names[message[DESTINATION]])
         else:
             logger.error(
-                f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, отправка сообщения невозможна.')
+                f'Пользователь {message[DESTINATION]} не зарегистрирован'
+                f' на сервере, отправка сообщения невозможна.')
 
     @login_required
     def process_client_message(self, message, client):
         '''Обработка поступающих сообщений.'''
         logger.debug(f'Разбор сообщения от клиента : {message}')
         # Если это сообщение о присутствии, принимаем и отвечаем
-        if ACTION in message and message[ACTION] == PRESENCE and TIME in message and USER in message:
+        if ACTION in message and message[ACTION] == PRESENCE \
+                and TIME in message and USER in message:
             # Если сообщение о присутствии то вызываем функцию авторизации.
             self.autorize_user(message, client)
 
         # Если это сообщение, то отправляем его получателю.
-        elif ACTION in message and message[ACTION] == MESSAGE and DESTINATION in message and TIME in message \
-                and SENDER in message and MESSAGE_TEXT in message and self.names[message[SENDER]] == client:
+        elif ACTION in message and message[ACTION] == MESSAGE \
+                and DESTINATION in message and TIME in message \
+                and SENDER in message and MESSAGE_TEXT in message \
+                and self.names[message[SENDER]] == client:
             if message[DESTINATION] in self.names:
                 self.database.process_message(
                     message[SENDER], message[DESTINATION])
@@ -166,12 +177,14 @@ class MessageProcessor(threading.Thread):
             return
 
         # Если клиент выходит
-        elif ACTION in message and message[ACTION] == EXIT and ACCOUNT_NAME in message \
+        elif ACTION in message and message[ACTION] == EXIT \
+                and ACCOUNT_NAME in message \
                 and self.names[message[ACCOUNT_NAME]] == client:
             self.remove_client(client)
 
         # Если это запрос контакт-листа
-        elif ACTION in message and message[ACTION] == GET_CONTACTS and USER in message and \
+        elif ACTION in message and message[ACTION] == GET_CONTACTS \
+                and USER in message and \
                 self.names[message[USER]] == client:
             response = RESPONSE_202
             response[LIST_INFO] = self.database.get_contacts(message[USER])
@@ -181,7 +194,8 @@ class MessageProcessor(threading.Thread):
                 self.remove_client(client)
 
         # Если это добавление контакта
-        elif ACTION in message and message[ACTION] == ADD_CONTACT and ACCOUNT_NAME in message and USER in message \
+        elif ACTION in message and message[ACTION] == ADD_CONTACT \
+                and ACCOUNT_NAME in message and USER in message \
                 and self.names[message[USER]] == client:
             self.database.add_contact(message[USER], message[ACCOUNT_NAME])
             try:
@@ -190,7 +204,8 @@ class MessageProcessor(threading.Thread):
                 self.remove_client(client)
 
         # Если это удаление контакта
-        elif ACTION in message and message[ACTION] == REMOVE_CONTACT and ACCOUNT_NAME in message and USER in message \
+        elif ACTION in message and message[ACTION] == REMOVE_CONTACT \
+                and ACCOUNT_NAME in message and USER in message \
                 and self.names[message[USER]] == client:
             self.database.remove_contact(message[USER], message[ACCOUNT_NAME])
             try:
@@ -210,7 +225,8 @@ class MessageProcessor(threading.Thread):
                 self.remove_client(client)
 
         # Если это запрос публичного ключа пользователя
-        elif ACTION in message and message[ACTION] == PUBLIC_KEY_REQUEST and ACCOUNT_NAME in message:
+        elif ACTION in message and message[ACTION] == PUBLIC_KEY_REQUEST \
+                and ACCOUNT_NAME in message:
             response = RESPONSE_511
             response[DATA] = self.database.get_pubkey(message[ACCOUNT_NAME])
             # может быть, что ключа ещё нет (пользователь никогда не логинился,

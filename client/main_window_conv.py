@@ -1,9 +1,11 @@
-
+'''
+Форма отображение основного окна
+'''
 import sys
-sys.path.append('../')
+
 from PyQt5 import QtCore, QtWidgets
 
-
+sys.path.append('../')
 
 class Ui_MainClientWindow(object):
     def setupUi(self, MainClientWindow):

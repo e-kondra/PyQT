@@ -1,18 +1,23 @@
+'''
+Основной модуль клиентского приложения
+'''
 import logging
-import logs.configs.client_log_config
 import argparse
 import sys
 import os
+
 from Cryptodome.PublicKey import RSA
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
-from common.variables import *
 from common.errors import ServerError
 from common.decors import log
+from common.variables import DEFAULT_IP_ADDRESS, DEFAULT_PORT
 from client.database import ClientDatabase
 from client.transport import ClientTransport
-from client.mainWindow import ClientMainWindow
+from client.main_window import ClientMainWindow
 from client.user_name_dialog import UserNameDialog
+import logs.configs.client_log_config
+
 
 LOG = logging.getLogger('client')
 
@@ -39,7 +44,8 @@ def arg_parser():
     # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         LOG.critical(
-            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. Допустимы адреса с 1024 до 65535. Клиент завершается.')
+            f'Попытка запуска клиента с неподходящим номером порта: {server_port}.'
+            f' Допустимы адреса с 1024 до 65535. Клиент завершается.')
         exit(1)
 
     return server_address, server_port, client_name, client_passwd
@@ -70,7 +76,8 @@ if __name__ == '__main__':
 
     # Записываем логи
     LOG.info(
-        f'Запущен клиент с парамертами: адрес сервера: {server_address} , порт: {server_port}, имя пользователя: {client_name}')
+        f'Запущен клиент с парамертами: адрес сервера: {server_address},'
+        f' порт: {server_port}, имя пользователя: {client_name}')
 
     # Загружаем ключи с файла, если же файла нет, то генерируем новую пару.
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -90,12 +97,8 @@ if __name__ == '__main__':
     # Создаём объект - транспорт и запускаем транспортный поток
     try:
         transport = ClientTransport(
-            server_port,
-            server_address,
-            database,
-            client_name,
-            client_passwd,
-            keys)
+            {'port': server_port, 'ip_address': server_address, 'database': database,
+             'username': client_name, 'passwd': client_passwd, 'keys': keys})
         LOG.debug("Transport ready.")
     except ServerError as error:
         message = QMessageBox()

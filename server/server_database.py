@@ -1,8 +1,10 @@
-
-from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, ForeignKey, DateTime, Text
-from sqlalchemy.orm import mapper, sessionmaker
+'''Модуль База Данных сервера'''
 
 import datetime
+
+from sqlalchemy import create_engine, Table, Column, Integer, \
+    String, MetaData, ForeignKey, DateTime, Text
+from sqlalchemy.orm import mapper, sessionmaker
 
 
 # Класс - серверная база данных:
@@ -115,8 +117,7 @@ class ServerStorage:
         mapper(self.UsersHistory, users_history_table)
 
         # Создаём сессию
-        Session = sessionmaker(bind=self.database_engine)
-        self.session = Session()
+        self.session = sessionmaker(bind=self.database_engine)
 
         # Если в таблице активных пользователей есть записи, то их необходимо удалить
         self.session.query(self.ActiveUsers).delete()
@@ -205,11 +206,12 @@ class ServerStorage:
         return user.passwd_hash
 
     def get_pubkey(self, name):
-        '''Получечние публичного ключа пользователя'''
+        '''Получение публичного ключа пользователя'''
         user = self.session.query(self.AllUsers).filter_by(name=name).first()
         return user.pubkey
 
     def check_user(self, name):
+        '''Проверка наличия пользователя в БД'''
         if self.session.query(self.AllUsers).filter_by(name=name).count():
             return True
         else:
@@ -312,8 +314,8 @@ class ServerStorage:
 
 
 # Отладка
-if __name__ == '__main__':
-    test = ServerStorage()
-    test.user_login('Test1', '192.168.56.1', 7070)
-    test.user_login('User', '192.168.56.1', 7077)
-    print(test.users_list())
+# if __name__ == '__main__':
+#     test = ServerStorage()
+#     test.user_login('Test1', '192.168.56.1', 7070)
+#     test.user_login('User', '192.168.56.1', 7077)
+#     print(test.users_list())

@@ -1,16 +1,20 @@
+'''Модуль История пользователей'''
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QWidget, QTableView, QPushButton, QLabel, QDialog
+from PyQt5.QtWidgets import QTableView, QPushButton, QLabel, QDialog
 
 
 class StatWindow(QDialog):
+    '''Класс - окно история пользователей '''
     def __init__(self, database):
         super().__init__()
 
         self.database = database
-        self.initUi()
+        self.init_ui()
 
-    def initUi(self):
+    def init_ui(self):
+        '''Инициализация графического интерфейса'''
         self.setWindowTitle('Users History')
         self.setFixedSize(600, 550)
         self.setAttribute(Qt.WA_DeleteOnClose)
@@ -35,9 +39,11 @@ class StatWindow(QDialog):
         self.create_stat_model()
 
     def create_stat_model(self):
+        '''Создание и отображение таблицы истории'''
         hist_list = self.database.message_history()
-        list = QStandardItemModel()
-        list.setHorizontalHeaderLabels(['Clients name', 'Last login time', 'Sent messages', 'Reсeived messages', ])
+        list_ = QStandardItemModel()
+        list_.setHorizontalHeaderLabels(
+            ['Clients name', 'Last login time', 'Sent messages', 'Reсeived messages'])
 
         for row in hist_list:
             user, time, sent, rcv = row
@@ -49,7 +55,7 @@ class StatWindow(QDialog):
             sent.setEditable(False)
             rcv = QStandardItem(str(rcv))
             rcv.setEditable(False)
-            list.appendRow([user, time, sent, rcv])  # добавляем строку
-        self.history_table.setModel(list)
+            list_.appendRow([user, time, sent, rcv])  # добавляем строку
+        self.history_table.setModel(list_)
         self.history_table.resizeColumnsToContents()
         self.history_table.resizeRowsToContents()

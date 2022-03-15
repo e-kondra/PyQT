@@ -1,28 +1,24 @@
-
+'''Модуль - запуск серверного приложения'''
 import sys
 import os
 import argparse
 import logging
-import select
-import threading
 import configparser
-# import logs.config_server_log
+
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication
 
-from common.variables import *
-from common.utils import *
+from common.variables import DEFAULT_PORT
+# from common.utils import *
 from common.decors import log
-
-
 from server.core import MessageProcessor
 from server.main_window import MainWindow
 from server.server_database import ServerStorage
-from PyQt5.QtWidgets import QApplication
+# import logs.config_server_log
 
 
 # Инициализация логирования сервера.
 LOG = logging.getLogger('server')
-
 
 
 @log

@@ -1,3 +1,5 @@
+'''Кно настройки серверного приложения'''
+
 import os
 
 from PyQt5.QtCore import Qt
@@ -10,9 +12,9 @@ class ConfigWindow(QDialog):
         super().__init__()
 
         self.config = config
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
+    def init_ui(self):
         '''Настройки окна'''
         self.setFixedSize(365, 260)
         self.setWindowTitle('Настройки сервера')
@@ -62,14 +64,15 @@ class ConfigWindow(QDialog):
         self.ip_label.setFixedSize(180, 15)
 
         # Метка с напоминанием о пустом поле.
-        self.ip_label_note = QLabel(' оставьте это поле пустым, чтобы\n принимать соединения с любых адресов.', self)
+        self.ip_label_note = QLabel(' оставьте это поле пустым, чтобы'
+                                    '\n принимать соединения с любых адресов.', self)
         self.ip_label_note.move(10, 168)
         self.ip_label_note.setFixedSize(500, 30)
 
         # Поле для ввода ip
-        self.ip = QLineEdit(self)
-        self.ip.move(200, 148)
-        self.ip.setFixedSize(150, 20)
+        self.ip_address = QLineEdit(self)
+        self.ip_address.move(200, 148)
+        self.ip_address.setFixedSize(150, 20)
 
         # Кнопка сохранения настроек
         self.save_btn = QPushButton('Сохранить' , self)
@@ -85,7 +88,7 @@ class ConfigWindow(QDialog):
         self.db_path.insert(self.config['SETTINGS']['Database_path'])
         self.db_file.insert(self.config['SETTINGS']['Database_file'])
         self.port.insert(self.config['SETTINGS']['Default_port'])
-        self.ip.insert(self.config['SETTINGS']['Listen_Address'])
+        self.ip_address.insert(self.config['SETTINGS']['Listen_Address'])
         self.save_btn.clicked.connect(self.save_server_config)
 
     def open_file_dialog(self):
@@ -110,7 +113,7 @@ class ConfigWindow(QDialog):
         except ValueError:
             message.warning(self, 'Ошибка', 'Порт должен быть числом')
         else:
-            self.config['SETTINGS']['Listen_Address'] = self.ip.text()
+            self.config['SETTINGS']['Listen_Address'] = self.ip_address.text()
             if 1023 < port < 65536:
                 self.config['SETTINGS']['Default_port'] = str(port)
                 dir_path = os.path.dirname(os.path.realpath(__file__))

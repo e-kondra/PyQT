@@ -1,12 +1,15 @@
+'''модуль - окно регистрации пользователя в серверном приложении'''
+
 import binascii
 import hashlib
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox, QPushButton, QLineEdit, QLabel
+from PyQt5.QtWidgets import QDialog, QMessageBox, QPushButton, QLineEdit, QLabel
 
 
 class RegistrUser(QDialog):
+    '''Класс - диалог регистрации пользователя на сервере'''
     def __init__(self, database, server):
         super().__init__()
 
@@ -94,9 +97,9 @@ class RegistrUser(QDialog):
             self.server.service_update_lists()
             self.close()
 
-if __name__ == '__main__':
-    serv = None
-    app = QApplication([])
-    app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
-    dial = RegistrUser(None, serv)
-    app.exec_()
+# if __name__ == '__main__':
+#     server_ = None
+#     app = QApplication([])
+#     app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
+#     dial = RegistrUser(None, server_)
+#     app.exec_()

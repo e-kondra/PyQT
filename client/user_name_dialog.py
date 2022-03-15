@@ -1,7 +1,11 @@
+'''Модуль - стартовый дилог с пользователем'''
+
 from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, qApp, QApplication
 
 
 class UserNameDialog(QDialog):
+    '''Класс - стартовый диалог с пользователем.'''
+
     def __init__(self):
         super().__init__()
         self.ok_pressed = False
@@ -10,8 +14,8 @@ class UserNameDialog(QDialog):
         self.setFixedSize(200, 160)
 
         self.label = QLabel('Введите имя пользователя:', self)
-        self.label.move(10,10)
-        self.label.setFixedSize(180,10)
+        self.label.move(10, 10)
+        self.label.setFixedSize(180, 10)
 
         self.client_name = QLineEdit(self)
         self.client_name.setFixedSize(160, 20)
@@ -38,8 +42,8 @@ class UserNameDialog(QDialog):
 
         self.show()
 
-
     def ok_press(self):
+        '''Обработчик кнопки Ok'''
         if self.client_name.text() and self.client_passwd.text():
             self.ok_pressed = True
             qApp.exit()
