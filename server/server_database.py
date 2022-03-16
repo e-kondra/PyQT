@@ -117,7 +117,8 @@ class ServerStorage:
         mapper(self.UsersHistory, users_history_table)
 
         # Создаём сессию
-        self.session = sessionmaker(bind=self.database_engine)
+        session = sessionmaker(bind=self.database_engine)
+        self.session = session()
 
         # Если в таблице активных пользователей есть записи, то их необходимо удалить
         self.session.query(self.ActiveUsers).delete()

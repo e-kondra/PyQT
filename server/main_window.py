@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QLabel, QTableView
 from server.config_window import ConfigWindow
 from server.registr_window import RegistrUser
 from server.remove_window import DeleteUser
-from server.stat_window import StatWindow
+from .stat_window import StatWindow
 
 
 class MainWindow(QMainWindow):

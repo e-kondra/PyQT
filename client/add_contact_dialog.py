@@ -1,3 +1,5 @@
+'''Окно добавления пользователя в список контактов'''
+
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor
@@ -7,6 +9,11 @@ from logs.configs.client_log_config import LOG
 
 
 class AddContact(QDialog):
+    '''
+    Диалог добавления пользователя в список контактов.
+    Предлагает пользователю список возможных контактов и
+    добавляет выбранный в контакты.
+    '''
     def __init__(self, transport, database):
 
         super().__init__()

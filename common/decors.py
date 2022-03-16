@@ -5,8 +5,7 @@ import sys
 import traceback
 import inspect
 
-from server.core import MessageProcessor
-from common.variables import ACTION, PRESENCE
+
 
 from logs.configs import client_log_config, server_log_config
 
@@ -45,7 +44,7 @@ def log(func):
 #             return res
 #
 #         return wrapper
-
+#
 
 def login_required(func):
     '''
@@ -58,6 +57,8 @@ def login_required(func):
     '''
 
     def checker(*args, **kwargs):
+        from server.core import MessageProcessor
+        from variables import ACTION, PRESENCE
         if isinstance(args[0], MessageProcessor):
             found = False
             for arg in args:

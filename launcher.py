@@ -11,7 +11,7 @@ while True:
     elif action == 's':
         # Запускаем сервер!
         try:
-            process.append(subprocess.Popen('python server.py',
+            process.append(subprocess.Popen('python server_pr.py',
                                             creationflags=subprocess.CREATE_NEW_CONSOLE))
         except Exception as err:
             print(err)
